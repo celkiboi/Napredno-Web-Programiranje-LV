@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  h1 Archived Projects
+  ul
+    each project in projects
+      li
+        strong #{project.name} 
+        | (Manager: #{project.manager ? project.manager.username : 'Unknown'})
+        br
+        | #{project.description}

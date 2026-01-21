@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+  h1 Projects
+  a(href='/projects/new') New Project
+  
+  h2 Projects I Lead
+  if ledProjects.length
+    ul
+      each project in ledProjects
+        li
+          a(href='/projects/#{project._id}') #{project.name}
+          |  - #{project.description} 
+          a(href='/projects/#{project._id}/edit') Edit
+          |  
+          form(action='/projects/#{project._id}/delete', method='post', style='display:inline')
+              button(type='submit') Delete
+          |  
+          form(action='/projects/#{project._id}/archive', method='post', style='display:inline')
+              button(type='submit') Archive
+  else
+    p No projects led.
+
+  h2 Projects I'm A Member Of
+  if memberProjects.length
+    ul
+      each project in memberProjects
+        li
+          a(href='/projects/#{project._id}') #{project.name}
+          |  - #{project.description} 
+          a(href='/projects/#{project._id}/edit') Edit (Jobs Done Only)
+  else
+    p No projects joined.

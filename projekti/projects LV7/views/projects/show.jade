@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  h1 #{project.name}
+  p Description: #{project.description}
+  p Price: #{project.price}
+  p Jobs Done: #{project.jobs_done}
+  p Start Date: #{project.start_date}
+  p End Date: #{project.end_date}
+  if project.manager
+    p Manager: #{project.manager.username}
+  
+  h2 Team Members
+  if project.members.length
+    ul
+      each member in project.members
+        li #{member.username}
+  else
+    p No members yet.
+      
+  if isManager
+    h3 Add Member
+    form(method='post', action='/projects/#{project._id}/members')
+      div
+        label Select Member:
+        if users && users.length > 0
+            select(name='member')
+                each user in users
+                    option(value='#{user.username}') #{user.username}
+        else
+            p No other users available to add.
+      div
+        if users && users.length > 0
+            input(type='submit', value='Add Member')
+      
+  a(href='/projects') Back to List

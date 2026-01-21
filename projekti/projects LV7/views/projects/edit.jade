@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  h1 Edit Project
+  form(method='post', action='/projects/#{project._id}')
+    if isManager
+      div
+        label Name:
+        input(type='text', name='name', value='#{project.name}')
+      div
+        label Description:
+        input(type='text', name='description', value='#{project.description}')
+      div
+        label Price:
+        input(type='number', name='price', value='#{project.price}')
+      div
+        label Start Date:
+        input(type='date', name='start_date', value='#{project.start_date ? project.start_date.toISOString().substr(0, 10) : ""}')
+      div
+        label End Date:
+        input(type='date', name='end_date', value='#{project.end_date ? project.end_date.toISOString().substr(0, 10) : ""}')
+    else
+        h3(style="color:gray") You can only edit 'Jobs Done' as a member.
+        
+    div
+      label Jobs Done:
+      textarea(name='jobs_done') #{project.jobs_done}
+      
+    div
+      input(type='submit', value='Update Project')

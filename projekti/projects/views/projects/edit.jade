@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  h1 Edit Project
+  form(method='post', action='/projects/#{project._id}')
+    div
+      label Name:
+      input(type='text', name='name', value='#{project.name}')
+    div
+      label Description:
+      input(type='text', name='description', value='#{project.description}')
+    div
+      label Price:
+      input(type='number', name='price', value='#{project.price}')
+    div
+      label Jobs Done:
+      input(type='text', name='jobs_done', value='#{project.jobs_done}')
+    div
+      label Start Date:
+      input(type='date', name='start_date', value='#{project.start_date ? project.start_date.toISOString().split("T")[0] : ""}')
+    div
+      label End Date:
+      input(type='date', name='end_date', value='#{project.end_date ? project.end_date.toISOString().split("T")[0] : ""}')
+    div
+      input(type='submit', value='Update')

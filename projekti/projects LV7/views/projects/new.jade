@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  h1 New Project
+  form(method='post', action='/projects')
+    div
+      label Name:
+      input(type='text', name='name')
+    div
+      label Description:
+      input(type='text', name='description')
+    div
+      label Price:
+      input(type='number', name='price')
+    div
+      label Jobs Done:
+      input(type='text', name='jobs_done')
+    div
+      label Start Date:
+      input(type='date', name='start_date')
+    div
+      label End Date:
+      input(type='date', name='end_date')
+    div
+      input(type='submit', value='Create')

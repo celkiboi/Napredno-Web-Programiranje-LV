@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 Register
+  if message && message.error
+    p(style="color:red") #{message.error}
+  form(method="post", action="/register")
+    div
+      label Username:
+      input(type="text", name="username")
+    div
+      label Email:
+      input(type="text", name="email")
+    div
+      label Password:
+      input(type="password", name="password")
+    div
+      input(type="submit", value="Register")
